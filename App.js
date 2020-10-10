@@ -1,21 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView} from 'react-native';
+import Homepage from './component/Homepage';
+import {useFonts} from 'expo-font';
 
 export default function App() {
+
+  const [loaded] = useFonts({
+    poppinsMedium: require('./assets/fonts/Poppins-Medium.ttf'),
+    poppinsSemiBold: require('./assets/fonts/Poppins-SemiBold.ttf'),
+    poppinsRegular: require('./assets/fonts/Poppins-Regular.ttf')
+  });
+
+  if (!loaded) {
+    return null;
+  }
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <Homepage />
+      {/* <Text style = {{fontSize: 50, color: "#fff", fontFamily: "poppinsMedium"}}>Hi</Text> */}
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#000',
+    // alignItems: 'center',
+    justifyContent: 'flex-start',
   },
 });
