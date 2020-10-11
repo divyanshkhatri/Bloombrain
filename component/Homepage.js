@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
-import {View, Text, Image, Dimensions, PickerIOSComponent, TouchableWithoutFeedback} from 'react-native';
+import {View, Text, Image, Dimensions, SafeAreaView, FlatList, TouchableOpacity, Modal, TouchableWithoutFeedback} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
-
-
+import { LinearGradient } from 'expo-linear-gradient';
+ 
 class Hompage extends Component {
 
     windowWidth = Dimensions.get('window').width;
 
     state = {
+        showModal: false,
         activeIndex:0,
         carouselItems: [
             {
                 title:"Item 1",
-                image: require("../images/picks.png")
+                image: require("../images/picks.png"),
             },
             {
                 title:"Item 2",
@@ -30,7 +31,136 @@ class Hompage extends Component {
                 title:"Item 5",
                 image: require("../images/picks.png")
             },
-          ]
+          ],
+        categories: [
+            {
+                title: "Academics",
+                id: '1',
+                imageUrl: require('../images/academics.png'),
+                backgroundColor: '#173F14',
+                gradient1: '#4AD240',
+                gradient2: '#177710'
+            },
+
+            {   
+                title: "Invention",
+                id: '2',
+                imageUrl: require('../images/invention.png'),
+                backgroundColor: '#1A0F43',
+                gradient1: '#654FB6',
+                gradient2: '#24194C'
+            },
+                
+            {
+                title: "Communication",
+                id: '3',
+                imageUrl: require('../images/comm.png'),
+                backgroundColor: '#470C6F',
+                gradient1: '#EB68F3',
+                gradient2: '#6E25B6'
+            }
+        ]
+    }
+        
+    renderCategories = ({item}) => {
+        return (
+            <TouchableOpacity
+                onPress = {() => 
+                    this.setState({
+                        showModal: true
+                    })
+                }
+            >
+                <LinearGradient
+                    // Button Linear Gradient
+                    colors={[ item.gradient1, item.gradient2]}
+                    style={{ 
+                        paddingTop: 25, 
+                        alignItems: 'center',
+                        borderRadius: 5,
+                        width: 130,
+                        marginLeft: 16,
+                        height: 200,
+                        borderRadius: 15
+                    }}>
+                    <Image 
+                        source = {item.imageUrl}
+                        style = {{
+                            height: 20,
+                            width: 20
+                        }}
+                    />
+                    <Text
+                        style={{
+                            marginTop: 5,
+                            fontFamily: 'poppinsSemiBold',
+                            fontSize: 15,
+                            color: '#fff',
+                        }}>
+                        {item.title}
+                    </Text>
+                    <Text 
+                    style = {{
+                        paddingLeft: 4,
+                        paddingRight: 4,
+                        marginTop: 5,
+                        fontFamily: 'poppinsRegular',
+                        fontSize: 10,
+                        color: '#fff',
+                    }}>
+                    Get a head start for your school curriculum by our thorough videos.
+                    </Text>
+                    <Text
+                    style = {{
+                        paddingLeft: 4,
+                        paddingRight: 4,
+                        marginTop: 5,
+                        fontFamily: 'poppinsRegular',
+                        fontSize: 8,
+                        alignSelf: "flex-start",
+                        paddingTop: 5,
+                        paddingLeft: 8,
+                        color: '#fff',
+                    }}>
+                        Total Chapters: 12
+                    </Text>
+                    <Text
+                    style = {{
+                        paddingLeft: 4,
+                        paddingRight: 4,
+                        marginTop: 5,
+                        fontFamily: 'poppinsRegular',
+                        fontSize: 8,
+                        alignSelf: "flex-start",
+                        paddingTop: -2,
+                        paddingLeft: 8,
+                        color: '#fff',
+                    }}>
+                        Total Videos: 140
+                    </Text>
+                    <Text
+                    style = {{
+                        backgroundColor: item.backgroundColor,
+                        borderColor: 'white',
+                        borderRadius: 8,
+                        paddingTop: 2.5,
+                        width: 75,
+                        height: 20,
+                        marginTop: 12,
+                        marginLeft: 8,
+                        textAlign: 'center',
+                        fontFamily: 'poppinsSemiBold',
+                        fontSize: 11,
+                        alignSelf: "flex-start",
+                        overflow: 'hidden',
+                        color: '#fff',
+                    }}>
+                        Explore Now
+                    </Text>
+                </LinearGradient>
+            </TouchableOpacity>
+
+        )
     }
 
     _renderItem({item}){
@@ -86,6 +216,9 @@ class Hompage extends Component {
             <Pagination
                 containerStyle = {{
                     marginTop: -15,
+                    // borderColor: 'white',
+                    // borderWidth: 3,
+                    paddingBottom: 4,
                 }}
                 dotsLength={carouselItems.length}
                 activeDotIndex={activeIndex}
@@ -115,10 +248,335 @@ class Hompage extends Component {
 
     render() {
         return(
-            <View style = {{flex: 1, flexDirection: "column"}}>
+            <SafeAreaView 
+            style = {{
+                flex: 1, 
+                flexDirection: "column",
+                backgroundColor: '#000'
+                }}>
+                <Modal
+                    visible = {this.state.showModal}
+                    animationType = "fade"
+                    transparent = {true}
+                    // backgroundColor = '#000'
+                    // backdropOpacity= {1}
+                    // backdropColor={'green'}
+                >
+                    <TouchableOpacity onPress = {() => this.setState({showModal: false})}>
+                        <SafeAreaView>
+                        <Image 
+                        style = {{
+                            width: 20,
+                            height: 20,
+                            marginTop: 30,
+                            marginLeft: 20
+                        }}
+                        source = {require("../images/cross.png")}/>
+                        </SafeAreaView>
+                    </TouchableOpacity>
+                    <View
+                    style = {{
+                        // flex: 1,
+
+                        margin: 20,
+                        marginTop: Dimensions.get('window').height/5,
+                        backgroundColor: '#232323',
+                        borderRadius: 20,
+                        padding: 35,
+                        width: 335,
+                        height: 450,
+                        alignItems: 'center',
+                        shadowColor: '#000',
+                        shadowOffset: {
+                        width: 0,
+                        height: 2,
+                        },
+                        shadowOpacity: 0.75,
+                        shadowRadius: 3.84,
+                        elevation: 5,
+                    }}
+                    >
+                        <Text 
+                            style = {{
+                                fontFamily: 'poppinsBold',
+                                color: 'white',
+                                fontSize: 20,
+                                alignSelf: 'flex-start'
+                        }}>
+                            Choose a Subject
+                        </Text>
+                        <View 
+                            style = {{
+                                flexDirection: "row",
+                                flex: 1,
+                                marginTop: 20
+                                // justifyContent: 'space-evenly'
+                                }}>
+                                
+                            <LinearGradient
+                    // Button Linear Gradient
+                                colors={[ '#6EDEFF', '#32C1ED', '#1285D1']}
+                                style={{ 
+                                    paddingTop: 25, 
+                                    alignItems: 'center',
+                                    borderRadius: 5,
+                                    width: 100,
+                                    marginLeft: 16,
+                                    height: 100,
+                                    borderRadius: 15
+                            }}>
+                                <Image 
+                                    source = {require("../images/flask-with-liquid2.png")}
+                                    style = {{
+                                        height: 40,
+                                        width: 40
+                                    }}
+                                />
+                                <Text style = {{
+                                    fontFamily: 'poppinsBold',
+                                    fontSize: 14,
+                                    color: '#fff',
+                                    marginTop: 5
+                                }}>
+                                    Science
+                                </Text>
+                            </LinearGradient>
+                            <LinearGradient
+                    // Button Linear Gradient
+                                colors={[ '#654FB6', '#24194C']}
+                                style={{ 
+                                    paddingTop: 25, 
+                                    alignItems: 'center',
+                                    borderRadius: 5,
+                                    width: 100,
+                                    marginLeft: 16,
+                                    height: 100,
+                                    borderRadius: 15
+                            }}>
+                                <Image 
+                                    source = {require("../images/flask-with-liquid2.png")}
+                                    style = {{
+                                        height: 40,
+                                        width: 40
+                                    }}
+                                />
+                                <Text style = {{
+                                    fontFamily: 'poppinsBold',
+                                    fontSize: 14,
+                                    color: '#fff',
+                                    marginTop: 5
+                                }}>
+                                    Maths
+                                </Text>
+
+                            </LinearGradient>
+                        </View>
+                        <View
+                            style = {{
+                                flex: 1,
+                                flexDirection: "row",
+                                marginTop: 20
+                            }}>
+                            <LinearGradient
+                    // Button Linear Gradient
+                                colors={[ '#EB68F3', '#6E25B6']}
+                                style={{ 
+                                    paddingTop: 25, 
+                                    alignItems: 'center',
+                                    borderRadius: 5,
+                                    width: 100,
+                                    marginLeft: 16,
+                                    height: 100,
+                                    borderRadius: 15
+                            }}>
+                                <Image 
+                                    source = {require("../images/flask-with-liquid2.png")}
+                                    style = {{
+                                        height: 40,
+                                        width: 40
+                                    }}
+                                />
+                                <Text style = {{
+                                    fontFamily: 'poppinsBold',
+                                    fontSize: 14,
+                                    color: '#fff',
+                                    marginTop: 5
+                                }}>
+                                    SST
+                                </Text>
+                            </LinearGradient>
+                            <LinearGradient
+                    // Button Linear Gradient
+                                colors={[ '#4AD240', '#177710']}
+                                style={{ 
+                                    paddingTop: 25, 
+                                    alignItems: 'center',
+                                    borderRadius: 5,
+                                    width: 100,
+                                    marginLeft: 16,
+                                    height: 100,
+                                    borderRadius: 15
+                            }}>
+                                <Image 
+                                    source = {require("../images/flask-with-liquid2.png")}
+                                    style = {{
+                                        height: 40,
+                                        width: 40
+                                    }}
+                                />
+                                <Text style = {{
+                                    fontFamily: 'poppinsBold',
+                                    fontSize: 14,
+                                    color: '#fff',
+                                    marginTop: 5
+                                }}>
+                                    English
+                                </Text>
+                            </LinearGradient>
+                        </View>
+                        <View
+                            style = {{
+                                    flex: 1,
+                                    flexDirection: "row",
+                                    marginTop: 20
+                                }}>
+                            <LinearGradient
+                    // Button Linear Gradient
+                                colors={[ '#EB68F3', '#6E25B6']}
+                                style={{ 
+                                    paddingTop: 25, 
+                                    alignItems: 'center',
+                                    borderRadius: 5,
+                                    width: 100,
+                                    marginLeft: 16,
+                                    height: 100,
+                                    borderRadius: 15
+                            }}>
+                                <Image 
+                                    source = {require("../images/flask-with-liquid2.png")}
+                                    style = {{
+                                        height: 40,
+                                        width: 40
+                                    }}
+                                />
+                                <Text style = {{
+                                    fontFamily: 'poppinsBold',
+                                    fontSize: 14,
+                                    color: '#fff',
+                                    marginTop: 5
+                                }}>
+                                    EVS
+                                </Text>
+                            </LinearGradient>
+                        </View>
+                        {/* <View 
+                            style = {{
+                                flexDirection: "row",
+                                flex: 1,
+                                marginTop: 20
+                                // justifyContent: 'space-evenly'
+                                }}>
+                                
+
+                            <LinearGradient
+                    // Button Linear Gradient
+                                colors={[ '#654FB6', '#24194C']}
+                                style={{ 
+                                    paddingTop: 25, 
+                                    alignItems: 'center',
+                                    borderRadius: 5,
+                                    width: 100,
+                                    marginLeft: 16,
+                                    height: 100,
+                                    borderRadius: 15
+                            }}>
+                                <Image 
+                                    source = {require("../images/flask-with-liquid2.png")}
+                                    style = {{
+                                        height: 40,
+                                        width: 40
+                                    }}
+                                />
+                                <Text style = {{
+                                    fontFamily: 'poppinsBold',
+                                    fontSize: 14,
+                                    color: '#fff',
+                                    marginTop: 5
+                                }}>
+                                    Maths
+                                </Text>
+
+                            </LinearGradient>
+                            <LinearGradient
+                    // Button Linear Gradient
+                                colors={[ '#EB68F3', '#6E25B6']}
+                                style={{ 
+                                    paddingTop: 25, 
+                                    alignItems: 'center',
+                                    borderRadius: 5,
+                                    width: 100,
+                                    marginLeft: 16,
+                                    height: 100,
+                                    borderRadius: 15
+                            }}>
+                                <Image 
+                                    source = {require("../images/flask-with-liquid2.png")}
+                                    style = {{
+                                        height: 40,
+                                        width: 40
+                                    }}
+                                />
+                                <Text style = {{
+                                    fontFamily: 'poppinsBold',
+                                    fontSize: 14,
+                                    color: '#fff',
+                                    marginTop: 5
+                                }}>
+                                    EVS
+                                </Text>
+                            </LinearGradient>
+                            </View>
+                            <View
+                            style = {{
+                                flex: 1, 
+                                flexDirection: 'row',
+                                marginTop: 20
+                            }}>
+                                <LinearGradient
+                        // Button Linear Gradient
+                                    colors={[ '#4AD240', '#177710']}
+                                    style={{ 
+                                        paddingTop: 25, 
+                                        alignItems: 'center',
+                                        borderRadius: 5,
+                                        width: 100,
+                                        marginLeft: 16,
+                                        height: 100,
+                                        borderRadius: 15
+                                }}>
+                                    <Image 
+                                        source = {require("../images/flask-with-liquid2.png")}
+                                        style = {{
+                                            height: 40,
+                                            width: 40
+                                        }}
+                                    />
+                                    <Text style = {{
+                                        fontFamily: 'poppinsBold',
+                                        fontSize: 14,
+                                        color: '#fff',
+                                        marginTop: 5
+                                    }}>
+                                        English
+                                    </Text>
+                                </LinearGradient>
+                            </View> */}
+                    </View>
+                </Modal>
+                
                 <View style = {{
                     // flex: 1,
-                    marginTop: 36, 
+                    marginTop: 20, 
                     marginLeft: 16, 
                     flexDirection: 'row',
                     // width: 200, 
@@ -162,8 +620,67 @@ class Hompage extends Component {
                     >What will you like to learn today?</Text>
                     </View>
                 </View>
+                <LinearGradient
+            // Button Linear Gradient
+                    colors={['#1285D1', '#32C1ED', '#6EDEFF']}
+                    start={[0, 1]} end={[1, 0]}
+                    style = {{
+                        flex: 5,
+                        alignSelf: 'center',
+                        alignItems: 'center',
+                        flexDirection: 'row',
+                        width: this.windowWidth-32,
+                        // borderColor: 'white',
+                        // borderWidth: 1,
+                        height: 80,
+                        paddingLeft: 20,
+                        borderRadius: 16,
+                        overflow: 'hidden',
+
+                        // justifyContent: "center"
+                    }}>
+                <Image 
+                    style = {{
+                        width: 20,
+                        height: 20
+                    }}
+                    source = {require("../images/wifi.png")} 
+                />
                 <Text
                     style = {{
+                        marginLeft: 8,
+                        fontFamily: 'poppinsMedium',
+                        fontSize: 16,
+                        color: 'white'
+                    }}
+                >Your Class is Live Now!</Text>
+                <View
+                    style = {{
+                        flex: 1,
+                        flexDirection: 'row',
+                        justifyContent: 'flex-end',
+                        paddingRight: 20,
+                    }}
+                >
+                <Image 
+                    style = {{
+                        // flexShrink: 1,
+                        // flex: 1,
+                        width: 15,
+                        height: 15,
+                       
+                        // justifyContent: 'flex-end'
+                        // borderWidth: 2,
+                        // borderColor: 'purple',
+                    }}
+                    source = {require("../images/arrow.png")} 
+                />
+                </View>
+                </LinearGradient>
+
+                <Text
+                    style = {{
+                        marginTop: 20, 
                         marginLeft: 16,
                         fontFamily : "poppinsSemiBold",
                         fontSize: 18,
@@ -171,25 +688,42 @@ class Hompage extends Component {
                     }}>
                         Top picks for you</Text>
                 <View style = {{marginTop: 20}}>
-                <Carousel
-                    layout={"default"}
-                    ref={ref => this.carousel = ref}
-                    data={this.state.carouselItems}
+                    <Carousel
+                        layout={"default"}
+                        ref={ref => this.carousel = ref}
+                        data={this.state.carouselItems}
 
-                    renderItem={this._renderItem}
-                    sliderWidth={this.windowWidth}
-                    itemWidth={this.windowWidth - 70}
-                    enableMomentum={false}
-                    lockScrollWhileSnapping
-                    // autoplay
-                    useScrollView
-                    loop
-                    autoplayInterval={3000}
-                    onSnapToItem = { index => this.setState({activeIndex:index}) } />
-                
-                {this.pagination}
-            </View>
-            </View>
+                        renderItem={this._renderItem}
+                        sliderWidth={this.windowWidth}
+                        itemWidth={this.windowWidth - 70}
+                        enableMomentum={false}
+                        lockScrollWhileSnapping
+                        // autoplay
+                        useScrollView
+                        loop
+                        autoplayInterval={3000}
+                        onSnapToItem = { index => this.setState({activeIndex:index}) } />
+                    
+                    {this.pagination}
+                </View>
+                <Text
+                style = {{
+                    marginLeft: 16,
+                    fontFamily : "poppinsSemiBold",
+                    fontSize: 18,
+                    color: 'white',
+                    marginBottom: 20
+                }}>
+                    Categories
+                </Text>
+                <FlatList
+                    horizontal = {true}
+                    data={this.state.categories}
+                    renderItem={this.renderCategories}
+                    keyExtractor={(item) => item.id}
+                    contentInset={{ right: 16, top: 0, left: 0, bottom: 0 }}
+                />
+            </SafeAreaView>
         )
     }
 }
