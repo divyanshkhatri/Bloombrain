@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {View, Text, Image, Dimensions, SafeAreaView, FlatList, TouchableOpacity, Modal, TouchableWithoutFeedback} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import { LinearGradient } from 'expo-linear-gradient';
- 
+import {Actions} from 'react-native-router-flux';
+
 class Hompage extends Component {
 
     windowWidth = Dimensions.get('window').width;
@@ -78,7 +79,7 @@ class Hompage extends Component {
                         paddingTop: 25, 
                         alignItems: 'center',
                         borderRadius: 5,
-                        width: 130,
+                        width: Dimensions.get('window').width/2.5,
                         marginLeft: 16,
                         height: 200,
                         borderRadius: 15
@@ -86,8 +87,8 @@ class Hompage extends Component {
                     <Image 
                         source = {item.imageUrl}
                         style = {{
-                            height: 20,
-                            width: 20
+                            height: 22,
+                            width: 25
                         }}
                     />
                     <Text
@@ -119,21 +120,19 @@ class Hompage extends Component {
                         fontSize: 8,
                         alignSelf: "flex-start",
                         paddingTop: 5,
-                        paddingLeft: 8,
+                        paddingLeft: 13,
                         color: '#fff',
                     }}>
                         Total Chapters: 12
                     </Text>
                     <Text
                     style = {{
-                        paddingLeft: 4,
-                        paddingRight: 4,
                         marginTop: 5,
                         fontFamily: 'poppinsRegular',
                         fontSize: 8,
                         alignSelf: "flex-start",
                         paddingTop: -2,
-                        paddingLeft: 8,
+                        paddingLeft: 13,
                         color: '#fff',
                     }}>
                         Total Videos: 140
@@ -142,12 +141,12 @@ class Hompage extends Component {
                     style = {{
                         backgroundColor: item.backgroundColor,
                         borderColor: 'white',
-                        borderRadius: 8,
+                        borderRadius: 10,
                         paddingTop: 2.5,
                         width: 75,
-                        height: 20,
+                        height: 21,
                         marginTop: 12,
-                        marginLeft: 8,
+                        marginLeft: 13,
                         textAlign: 'center',
                         fontFamily: 'poppinsSemiBold',
                         fontSize: 11,
@@ -250,11 +249,16 @@ class Hompage extends Component {
         return(
             <SafeAreaView 
             style = {{
+                // borderWidth: 2,
+                // borderColor: 'white',
                 flex: 1, 
                 flexDirection: "column",
-                backgroundColor: '#000'
+                backgroundColor: '#000',
+                paddingTop: Platform.OS === 'android' ? 25 : 0,
+                // alignItems: 'center'
                 }}>
                 <Modal
+                    
                     visible = {this.state.showModal}
                     animationType = "fade"
                     transparent = {true}
@@ -279,13 +283,13 @@ class Hompage extends Component {
                         // flex: 1,
 
                         margin: 20,
-                        marginTop: Dimensions.get('window').height/5,
+                        marginTop: Dimensions.get('window').height/7,
                         backgroundColor: '#232323',
                         borderRadius: 20,
                         padding: 35,
                         width: 335,
                         height: 450,
-                        alignItems: 'center',
+                        alignSelf: 'center',
                         shadowColor: '#000',
                         shadowOffset: {
                         width: 0,
@@ -301,7 +305,7 @@ class Hompage extends Component {
                                 fontFamily: 'poppinsBold',
                                 color: 'white',
                                 fontSize: 20,
-                                alignSelf: 'flex-start'
+                                alignSelf: "center"
                         }}>
                             Choose a Subject
                         </Text>
@@ -309,7 +313,8 @@ class Hompage extends Component {
                             style = {{
                                 flexDirection: "row",
                                 flex: 1,
-                                marginTop: 20
+                                marginTop: 20,
+                                alignSelf: 'center'
                                 // justifyContent: 'space-evenly'
                                 }}>
                                 
@@ -341,41 +346,52 @@ class Hompage extends Component {
                                     Science
                                 </Text>
                             </LinearGradient>
-                            <LinearGradient
-                    // Button Linear Gradient
-                                colors={[ '#654FB6', '#24194C']}
-                                style={{ 
-                                    paddingTop: 25, 
-                                    alignItems: 'center',
-                                    borderRadius: 5,
-                                    width: 100,
-                                    marginLeft: 16,
-                                    height: 100,
-                                    borderRadius: 15
-                            }}>
-                                <Image 
-                                    source = {require("../images/flask-with-liquid2.png")}
-                                    style = {{
-                                        height: 40,
-                                        width: 40
-                                    }}
-                                />
-                                <Text style = {{
-                                    fontFamily: 'poppinsBold',
-                                    fontSize: 14,
-                                    color: '#fff',
-                                    marginTop: 5
+                            <TouchableOpacity
+                                onPress = { () => {
+                                    this.setState({
+                                        showModal: false
+                                    })
+                                    
+                                    Actions.subject({subject: 'maths'});
+                                }}
+                            >
+                                <LinearGradient
+                        // Button Linear Gradient
+                                    colors={[ '#654FB6', '#24194C']}
+                                    style={{ 
+                                        paddingTop: 25, 
+                                        alignItems: 'center',
+                                        borderRadius: 5,
+                                        width: 100,
+                                        marginLeft: 16,
+                                        height: 100,
+                                        borderRadius: 15
                                 }}>
-                                    Maths
-                                </Text>
+                                    <Image 
+                                        source = {require("../images/maths.png")}
+                                        style = {{
+                                            height: 40,
+                                            width: 40
+                                        }}
+                                    />
+                                    <Text style = {{
+                                        fontFamily: 'poppinsBold',
+                                        fontSize: 14,
+                                        color: '#fff',
+                                        marginTop: 5
+                                    }}>
+                                        Maths
+                                    </Text>
 
-                            </LinearGradient>
+                                </LinearGradient>
+                            </TouchableOpacity>
                         </View>
                         <View
                             style = {{
                                 flex: 1,
                                 flexDirection: "row",
-                                marginTop: 20
+                                marginTop: 20,
+                                alignSelf: 'center'
                             }}>
                             <LinearGradient
                     // Button Linear Gradient
@@ -390,7 +406,7 @@ class Hompage extends Component {
                                     borderRadius: 15
                             }}>
                                 <Image 
-                                    source = {require("../images/flask-with-liquid2.png")}
+                                    source = {require("../images/sst.png")}
                                     style = {{
                                         height: 40,
                                         width: 40
@@ -418,10 +434,10 @@ class Hompage extends Component {
                                     borderRadius: 15
                             }}>
                                 <Image 
-                                    source = {require("../images/flask-with-liquid2.png")}
+                                    source = {require("../images/eng.png")}
                                     style = {{
-                                        height: 40,
-                                        width: 40
+                                        height: 30,
+                                        width: 43
                                     }}
                                 />
                                 <Text style = {{
@@ -438,7 +454,8 @@ class Hompage extends Component {
                             style = {{
                                     flex: 1,
                                     flexDirection: "row",
-                                    marginTop: 20
+                                    marginTop: 20,
+                                    alignSelf: 'center'
                                 }}>
                             <LinearGradient
                     // Button Linear Gradient
@@ -453,7 +470,7 @@ class Hompage extends Component {
                                     borderRadius: 15
                             }}>
                                 <Image 
-                                    source = {require("../images/flask-with-liquid2.png")}
+                                    source = {require("../images/evs.png")}
                                     style = {{
                                         height: 40,
                                         width: 40
@@ -625,7 +642,7 @@ class Hompage extends Component {
                     colors={['#1285D1', '#32C1ED', '#6EDEFF']}
                     start={[0, 1]} end={[1, 0]}
                     style = {{
-                        flex: 5,
+                        
                         alignSelf: 'center',
                         alignItems: 'center',
                         flexDirection: 'row',
@@ -687,15 +704,18 @@ class Hompage extends Component {
                         color: 'white'
                     }}>
                         Top picks for you</Text>
-                <View style = {{marginTop: 20}}>
+                <View style = {{
+                    marginTop: 20,
+                    alignItems: 'center',
+                    }}>
                     <Carousel
                         layout={"default"}
                         ref={ref => this.carousel = ref}
                         data={this.state.carouselItems}
 
                         renderItem={this._renderItem}
-                        sliderWidth={this.windowWidth}
-                        itemWidth={this.windowWidth - 70}
+                        sliderWidth= {Dimensions.get('window').width}
+                        itemWidth={300}
                         enableMomentum={false}
                         lockScrollWhileSnapping
                         // autoplay
@@ -717,6 +737,9 @@ class Hompage extends Component {
                     Categories
                 </Text>
                 <FlatList
+                    style = {{
+                        alignSelf: 'center'
+                    }}
                     horizontal = {true}
                     data={this.state.categories}
                     renderItem={this.renderCategories}

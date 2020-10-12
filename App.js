@@ -1,8 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView} from 'react-native';
 import Homepage from './component/Homepage';
+import Subject from './component/Subject';
 import {useFonts} from 'expo-font';
-// import { Router, Scene } from 'react-native-router-flux';
 import {Stack, Scene, Router} from 'react-native-router-flux';
 
 export default function App() {
@@ -21,7 +20,8 @@ export default function App() {
 
       <Router>
         <Stack key = "root">
-         	<Scene key = "homepage" component = {Homepage} title = "homepage" hideNavBar />
+          <Scene key = "homepage" component = {Homepage} title = "homepage" hideNavBar initial/>
+          <Scene key = "subject" component = {Subject} title = "subject" hideNavBar />
 			{/* <Scene key =  */}
         </Stack>
        </Router>
