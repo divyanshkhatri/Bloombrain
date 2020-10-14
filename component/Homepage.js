@@ -352,7 +352,7 @@ class Hompage extends Component {
                                         showModal: false
                                     })
                                     
-                                    Actions.subject({subject: 'maths'});
+                                    Actions.subject({subject: 'maths', });
                                 }}
                             >
                                 <LinearGradient

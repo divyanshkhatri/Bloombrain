@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {View, SafeAreaView, Text, Dimensions, ImageBackground, Image} from 'react-native';
+import {View, SafeAreaView, Text, Dimensions, Linking, Image, ImageBackground} from 'react-native';
 import RNPickerSelect, { defaultStyles } from 'react-native-picker-select';
 import { LinearGradient } from 'expo-linear-gradient';
-import { FlatList, ScrollView } from 'react-native-gesture-handler';
+import { FlatList, ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import {Actions} from 'react-native-router-flux';
 
 export default class Subject extends Component {
 
@@ -22,28 +23,58 @@ export default class Subject extends Component {
             itemDetails: [
             {
                 _id: "5e12905eb10fe53808d1ca5a",
-                categories: [{id: '1', cat: '1', url: [require('')]}, {id: '2', cat: '2'}, {id: '3', cat: '3'}, {id: '4', cat: '4'}],
-                nameXquantity: "Lehsun Adrak x100",
-                individualTotal: 155
+                topicName: 'Straight Lines',
+                testNo: 4,
+                videosNo: 4,
+                testCompleted: 2,
+                videosCompleted: 1,
+                categories: {
+                    id: '1', 
+                    cat: '1',
+                    urlVideos: [{id: '1', urls: require('../images/mathswork.png'), time: "3:48"}, {id: '2', urls: require('../images/mathswork.png'), time: "3:48"}, {id: '3', urls: require('../images/mathswork.png'), time: "3:48"}, {id: '4', urls: require('../images/mathswork.png'), time: "3:48"}],
+                    urlTest: [{id: '1', urls: "https://www.google.com"}, {id: '2', urls: "https://www.google.com"}, {id: '3', urls: "https://www.google.com"}, {id: '4', urls: "https://www.google.com"}],
+
+                }
             },
             {
                 _id: "5e12905eb10fe53808d1ca59",
-                categories: [{id: '1', cat: '1'}, {id: '2', cat: '2'}, {id: '3', cat: '3'}, {id: '4', cat: '4'}],
-                nameXquantity: "Lehsun x50",
-                individualTotal: 25
+                topicName: 'Circles',
+                testNo: 4,
+                videosNo: 4,
+                testCompleted: 0,
+                videosCompleted: 2,
+                categories: {
+                    id: '1', 
+                    cat: '1', 
+                    urlVideos: [{id: '1', urls: require('../images/mathswork.png'), time: "3:48"}, {id: '2', urls: require('../images/mathswork.png'), time: "3:48"}, {id: '3', urls: require('../images/mathswork.png'), time: "3:48"}, {id: '4', urls: require('../images/mathswork.png'), time: "3:48"}],
+                    urlTest: [{id: '1', urls: "https://www.google.com"}, {id: '2', urls: "https://www.google.com"}, {id: '3', urls: "https://www.google.com"}, {id: '4', urls: "https://www.google.com"}],
+
+            }
             },
             {
                 _id: "5e12905eb10fe53808d1ca58",
-                categories: [{id: '1', cat: '1'}, {id: '2', cat: '2'}, {id: '3', cat: '3'}, {id: '4', cat: '4'}],
-                nameXquantity: "Lehsun Adrak Dhaniya Shimla mirch x Infinity",
-                individualTotal: 9969
+                topicName: 'Parabola',
+                testNo: 4,
+                videosNo: 4,
+                testCompleted: 4,
+                videosCompleted: 4,
+                categories: {
+                    id: '1', 
+                    cat: '1', 
+                    urlVideos: [{id: '1', urls: require('../images/mathswork.png'), time: "3:48"}, {id: '2', urls: require('../images/mathswork.png'), time: "3:48"}, {id: '3', urls: require('../images/mathswork.png'), time: "3:48"}, {id: '4', urls: require('../images/mathswork.png'), time: "3:48"}],
+                    urlTest: [{id: '1', urls: "https://www.google.com"}, {id: '2', urls: "https://www.google.com"}, {id: '3', urls: "https://www.google.com"}, {id: '4', urls: "https://www.google.com"}],
+
+                }
             }
-            ]    
+        ]    
     }
 
     render() {
-        
+        let i = 0 ;
+
+
         return (
+            
             <SafeAreaView
                 style = {{
                     flex: 1,
@@ -52,6 +83,8 @@ export default class Subject extends Component {
                     paddingTop: Platform.OS === 'android' ? 25 : 0
                 }}
             >
+                <ScrollView>
+                    
                 <View>
                 <LinearGradient
                         // Button Linear Gradient
@@ -59,16 +92,30 @@ export default class Subject extends Component {
                         start={[0, 1]} end={[1, 0]}
                         style={{ 
                             paddingLeft: 20, 
-                            paddingTop: 65,
+                            
                             // borderRadius: 5,
                             width: Dimensions.get('window').width,
                             // marginLeft: 16,
                             height: 135,
                             // borderRadius: 15
                     }}>
+                        <TouchableOpacity
+                            onPress = { () => Actions.pop()}
+                        >
+                        <Image
 
+                            style = {{
+                                marginTop: 15,
+                                // borderWidth: 1, 
+                                // borderColor: 'white',
+                                marginLeft: -2,
+                                width: 30, 
+                                height: 30}}
+                            source = {require('../images/back.png')}/>
+                        </TouchableOpacity>
                         <Text
                         style = {{
+                            paddingTop: 20,
                             fontFamily: 'poppinsSemiBold',
                             color: 'white',
                             fontSize: 30
@@ -137,68 +184,237 @@ export default class Subject extends Component {
                                 
                             }}
                             source = {require('../images/icon.png')}/>
-                            {/* <Text>
-                                Hi
-                            </Text> */}
+
                             </View>
                         )
                     }}
                 >
 
                 </RNPickerSelect>
-                <FlatList
+                <Text
                     style = {{
-                        borderColor: 'white',
-                        borderWidth: 2
+                        color: '#32C6F3',
+                        fontFamily: 'poppinsSemiBold',
+                        fontSize: 18,
+                        marginLeft: 16,
+                        marginBottom: 22,
                     }}
-                    data = {this.state.itemDetails}
-                    renderItem = { ({item}) => (
-                        <View>
-                            <FlatList
-                                data = {item.categories}
-                                renderItem = {({item}) => 
-                                        <View>
-                                            <Text
-                                            style = {{
-                                                    fontFamily: 'poppinsMedium',
-                                                    fontSize: 500,
-                                                    color: 'white'
-                                                }}
-                                            >{item.id}</Text>
-                                        </View>
-                
-                                }
-                                    // item.categories.map((cate) => {
-                                    //     return (
-                                    //         (
-                                    //         <View>
-                                    //             <Text
-                                    //                 style = {{
-                                    //                     fontFamily: 'poppinsMedium',
-                                    //                     fontSize: 18,
-                                    //                     color: 'white'
-                                    //                 }}
-                                    //             >{cate.cat}</Text>
-                                    //         </View>
-                                    //         )
-                                    //     )
-                                    // })
-
-                                horizontal = {true}
-                                keyExtractor = {item.categories.id}
-
-                            >
-
-                            </FlatList>
-                        </View>
-                    )}
-                    keyExtractor = {item => item._id}
                 >
-                    
-                </FlatList>
+                    Chapter Outline
+                </Text>
+                <FlatList
+                   
+                    data = {this.state.itemDetails}
+                    renderItem = { ({item}) => {
+                        let ratio = ((item.testCompleted + item.videosCompleted) / (item.testNo + item.videosNo))*162
+                        ;
+                        console.log(ratio)
+                        return (
+                            <View
+                            style = {{flexDirection: 'row'}}
+                            >
+                            <View>
+                                {   
+                                    
+                                    item.testCompleted + item.videosCompleted != item.testNo + item.videosNo ? (
+                                        <View>
+                                            <View style = {{
+                                                borderColor: '#1DD348',
+                                                borderWidth: 4,
+                                                backgroundColor: '#2C2B2B',
+                                                marginLeft: 20,
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                width: 38,
+                                                height: 38,
+                                                borderRadius: 19
+                                            }} />
+                                            <View 
+                                            
+                                                style = {{
+                                                    alignSelf: 'center',
+                                                    backgroundColor: '#1DD348',
+                                                    borderBottomLeftRadius: 2,
+                                                    borderBottomRightRadius: 2,
+                                                    width: 6,
+                                                    height: ratio,
+                                                    marginLeft: 20,
+                                                }}
+                            
+                                            />
+                                            <View
+                                                style = {{
+                                                   
+                                                    alignSelf: 'center',
+                                                    backgroundColor: '#2C2B2B',
+                                                    // borderWidth: 2,
+                                                    // borderColor: 'white',
+                                                    // borderRadius: 4,
+                                                    // borderBottomEndRadius: '5',
+                                                    width: 6,
+                                                    height: 162-ratio,
+                                                    marginLeft: 20,
+                            
+                                                }}
+                                            />
+                                        </View>
+                                    ) : (
+                                        <View>
+                                            <View style = {{
+                                                // borderColor: 'white',
+                                                // borderWidth: 2,
+                                                backgroundColor: '#1DD348',
+                                                marginLeft: 20,
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                width: 40,
+                                                height: 40,
+                                                borderRadius: 20
+                                            }}>
+                                            <Image 
+                                                style ={{
+                                                    width: 22,
+                                                    height: 22
+                                                }}
+                                                source = {require('../images/tick.png')}
+                                            />
+                                            </View>
+                                            <View
+                                                style = {{
+                                                    alignSelf: 'center',
+                                                    backgroundColor: '#1DD348',
+                                                    // borderWidth: 2,
+                                                    // borderColor: 'white',
+                                                    // borderRadius: 4,
+                                                    width: 6,
+                                                    height: 163,
+                                                    marginLeft: 20,
+                            
+                                                }}
+                                            />
+                                        </View>
+                            
+                                    )
 
+                                }
+                            </View>
+                            <View style = {{marginBottom: 20}}>
+                                
+                                <Text
+                                    style = {{
+                                        color: 'white',
+                                        fontFamily: 'poppinsSemiBold',
+                                        fontSize: 16,
+                                        marginLeft: 20
+                                }}
+                                >
+                                    {item.topicName}
+                                </Text>
+                                <FlatList 
+                                contentContainerStyle = {{
+                                    marginLeft: 20,
+                                    // marginRight: 1000,
+                                }}
+                                data = {item.categories.urlVideos}
+                                horizontal = {true}
+                                ListFooterComponent={<View style={{width:80}}></View>}
+                                keyExtractor = {item => item.id}
+                                renderItem = { ({item}) => {
+
+                                return (
+                                    
+                                        <View>
+                                            <ImageBackground
+                                            style = {{
+                                                marginTop: 20,
+                                                marginRight: 20,
+                                                width: 170, 
+                                                height: 100, 
+                                                borderRadius: 30,
+                                                marginBottom: 0,
+                                                position: 'relative',
+                                                
+                                                // overflow: 'hidden'
+                                                // borderWidth: 2,
+                                                // borderColor: 'white'
+                                            }}
+                                            source = {item.urls}>
+                                                <Text 
+                                                    style = {{
+                                                        color: 'white', 
+                                                        backgroundColor: 'black',
+                                                        position: 'absolute',
+                                                        bottom: 10,
+                                                        fontFamily: 'poppinsRegular',
+                                                        fontSize: 10,
+                                                        right: 10,
+                                                        borderRadius: 3,
+                                                        overflow: 'hidden',
+                                                        paddingLeft: 2,
+                                                        paddingRight: 2,
+                                                }}>
+                                                {item.time}
+                                                </Text>
+                                            </ImageBackground>
+                                        </View>
+                                    )
+                                    
+                                }}
+                                
+                                />
+                                <FlatList 
+                                contentContainerStyle = {{
+                                    marginLeft: 20,
+                                    marginRight: 20
+                                }}
+                                data = {item.categories.urlTest}
+                                horizontal = {true}
+                                renderItem = { ({item}) => {
+                                    i++
+                                    if((i-1)%4 == 0) i = 1
+                                    return (
+                                            <View 
+                                                style = {{
+                                                    width: 60,
+                                                    height: 25,
+                                                    backgroundColor: '#2C2B2B',
+                                                    borderRadius: 15,
+                                                    alignItems: 'center',
+                                                    marginTop: 15,
+                                                    // marginBottom: 5,
+                                                    // marginLeft: 4,
+                                                    marginRight: 4,
+
+                                                    justifyContent: 'center'
+                                                }}
+                                            >
+                                                <Text style={{
+                                                    color: 'white',
+                                                    fontFamily: 'poppinsRegular',
+                                                    fontSize: 11
+                                                }}
+                                                    onPress={() => Linking.openURL(item.urls)}>
+                                                Test {i}
+                                                </Text>
+                                                
+                                            </View>
+                                        )
+                                        
+                                    }}
+                                    keyExtractor = {item => item.id}
+                                />
+                                
+                            </View>
+                            </View>
+                            ) 
+                            
+                        }
+                    }
+                    keyExtractor = {item => item._id}
+                />
+            </ScrollView>
             </SafeAreaView>
+
         )
     }
-
 }

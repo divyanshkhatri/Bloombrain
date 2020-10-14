@@ -20,7 +20,7 @@ export default function App() {
 
       <Router>
         <Stack key = "root">
-          <Scene key = "homepage" component = {Homepage} title = "homepage" hideNavBar initial/>
+          <Scene key = "homepage" component = {Homepage} title = "homepage" hideNavBar />
           <Scene key = "subject" component = {Subject} title = "subject" hideNavBar />
 			{/* <Scene key =  */}
         </Stack>
