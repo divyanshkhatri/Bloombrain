@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
-import {View, SafeAreaView, Text, Dimensions, Linking, Image, ImageBackground} from 'react-native';
+import {View, SafeAreaView, Text, Dimensions, Linking, Image, ImageBackground, LogBox} from 'react-native';
 import RNPickerSelect, { defaultStyles } from 'react-native-picker-select';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FlatList, ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import {Actions} from 'react-native-router-flux';
+import BottomNavBar from './BottomNavigator';
 
 export default class Subject extends Component {
+
+    componentDidMount() {
+        LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+    }
 
     state = {
         numbers: [
@@ -76,14 +81,19 @@ export default class Subject extends Component {
         return (
             
             <SafeAreaView
+                // forceInset={{ bottom: 'never' }}
                 style = {{
-                    flex: 1,
+                    // flex: 1,
                     // flexDirection: 'column',
                     backgroundColor: 'black',
-                    paddingTop: Platform.OS === 'android' ? 25 : 0
+                    paddingTop: Platform.OS === 'android' ? 25 : 0,
                 }}
             >
-                <ScrollView>
+                <ScrollView
+                    style = {{
+                        // marginBottom: 80,
+                    }}
+                >
                     
                 <View>
                 <LinearGradient
