@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {SafeAreaView, View, Text} from 'react-native';
-import BottomNavBar from './BottomNavigator';
 
 class Live extends Component {
 
@@ -9,6 +8,7 @@ class Live extends Component {
             <SafeAreaView
                 style = {{
                     // flex: 1,
+                    height: '100%',
                     // flexDirection: 'column',
                     backgroundColor: 'black',
                     paddingTop: Platform.OS === 'android' ? 25 : 0
@@ -16,6 +16,9 @@ class Live extends Component {
             >
                 <Text
                     style = {{
+                        alignSelf: 'center',
+                        textAlign: 'center',
+                        justifyContent: 'center',
                         color: 'white',
                         fontFamily: 'poppinsMedium'
                     }}

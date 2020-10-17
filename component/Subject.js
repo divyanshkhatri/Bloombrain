@@ -29,8 +29,8 @@ export default class Subject extends Component {
             {
                 _id: "5e12905eb10fe53808d1ca5a",
                 topicName: 'Straight Lines',
-                testNo: 4,
-                videosNo: 4,
+                testNo: 8,
+                videosNo: 6,
                 testCompleted: 2,
                 videosCompleted: 1,
                 categories: {
@@ -44,7 +44,7 @@ export default class Subject extends Component {
             {
                 _id: "5e12905eb10fe53808d1ca59",
                 topicName: 'Circles',
-                testNo: 4,
+                testNo: 1,
                 videosNo: 4,
                 testCompleted: 0,
                 videosCompleted: 2,
@@ -76,13 +76,13 @@ export default class Subject extends Component {
 
     render() {
         let i = 0 ;
-
-
         return (
             
             <SafeAreaView
                 // forceInset={{ bottom: 'never' }}
                 style = {{
+                    height: '96.2%',
+                    // paddingBottom: 50,
                     // flex: 1,
                     // flexDirection: 'column',
                     backgroundColor: 'black',
@@ -91,7 +91,7 @@ export default class Subject extends Component {
             >
                 <ScrollView
                     style = {{
-                        // marginBottom: 80,
+
                     }}
                 >
                     
@@ -216,9 +216,8 @@ export default class Subject extends Component {
                    
                     data = {this.state.itemDetails}
                     renderItem = { ({item}) => {
-                        let ratio = ((item.testCompleted + item.videosCompleted) / (item.testNo + item.videosNo))*162
+                        let ratio = ((item.testCompleted + item.videosCompleted) / (item.testNo + item.videosNo))*155
                         ;
-                        console.log(ratio)
                         return (
                             <View
                             style = {{flexDirection: 'row'}}
@@ -259,10 +258,11 @@ export default class Subject extends Component {
                                                     backgroundColor: '#2C2B2B',
                                                     // borderWidth: 2,
                                                     // borderColor: 'white',
-                                                    // borderRadius: 4,
+                                                    borderBottomLeftRadius: 4,
+                                                    borderBottomRightRadius: 4,
                                                     // borderBottomEndRadius: '5',
                                                     width: 6,
-                                                    height: 162-ratio,
+                                                    height: 155-ratio,
                                                     marginLeft: 20,
                             
                                                 }}
@@ -296,6 +296,8 @@ export default class Subject extends Component {
                                                     // borderWidth: 2,
                                                     // borderColor: 'white',
                                                     // borderRadius: 4,
+                                                    borderBottomLeftRadius: 4,
+                                                    borderBottomRightRadius: 4,
                                                     width: 6,
                                                     height: 163,
                                                     marginLeft: 20,
@@ -316,9 +318,22 @@ export default class Subject extends Component {
                                         fontFamily: 'poppinsSemiBold',
                                         fontSize: 16,
                                         marginLeft: 20
-                                }}
+                                    }}
                                 >
                                     {item.topicName}
+                                </Text>
+                                <Text
+                                    style = {{
+                                        color: 'white',
+                                        fontFamily: 'poppinsSemiBold',
+                                        fontSize: 10,
+                                        marginLeft: 20
+                                    }}
+                                >
+                                    {item.videosNo} Videos <Image 
+                                        style = {{width: 5, height: 5, justifyContent: 'center'}}
+                                        source = {require("../images/dot.png")}
+                                    /> {item.testNo} tests
                                 </Text>
                                 <FlatList 
                                 contentContainerStyle = {{
@@ -340,8 +355,9 @@ export default class Subject extends Component {
                                                 marginRight: 20,
                                                 width: 170, 
                                                 height: 100, 
-                                                borderRadius: 30,
+                                                borderRadius: 10,
                                                 marginBottom: 0,
+                                                overflow: 'hidden',
                                                 position: 'relative',
                                                 
                                                 // overflow: 'hidden'

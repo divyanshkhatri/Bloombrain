@@ -9,6 +9,7 @@ class Test extends Component {
             <SafeAreaView
                 style = {{
                     // flex: 1,
+                    height: '100%',
                     // flexDirection: 'column',
                     backgroundColor: 'black',
                     paddingTop: Platform.OS === 'android' ? 25 : 0
@@ -16,6 +17,7 @@ class Test extends Component {
             >
                 <Text
                     style = {{
+                        textAlign: 'center',
                         color: 'white',
                         fontFamily: 'poppinsMedium'
                     }}

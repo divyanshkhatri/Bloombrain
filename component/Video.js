@@ -9,6 +9,7 @@ class Video extends Component {
             <SafeAreaView
                 style = {{
                     // flex: 1,
+                    height: '100%',
                     // flexDirection: 'column',
                     backgroundColor: 'black',
                     paddingTop: Platform.OS === 'android' ? 25 : 0
@@ -16,6 +17,8 @@ class Video extends Component {
             >
                 <Text
                     style = {{
+                        alignSelf: 'center',
+                        justifyContent: 'center',
                         color: 'white',
                         fontFamily: 'poppinsMedium'
                     }}
