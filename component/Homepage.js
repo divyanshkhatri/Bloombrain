@@ -9,6 +9,7 @@ class Hompage extends Component {
     windowWidth = Dimensions.get('window').width;
 
     state = {
+        showModalCong: false,
         showModal: false,
         activeIndex:0,
         carouselItems: [
@@ -257,33 +258,122 @@ class Hompage extends Component {
                 paddingTop: Platform.OS === 'android' ? 25 : 0,
                 // alignItems: 'center'
                 }}>
+                {/* <Modal 
+                    visible = {this.state.showModalCong}
+                    animationType = "fade"
+                    transparent = {true}
+                >   
+                    <TouchableOpacity 
+                        style = {{
+                            height: '100%'
+                        }}
+                        onPress={() => {
+                        this.setState({showModalCong: !this.state.showModalCong})
+                    }}>
+                    <View>
+                        <TouchableWithoutFeedback onPress={() => { }}>
+                        <View
+                        style = {{
+                            // flex: 1,
+                            // borderColor: 'white',
+                            // borderWidth: 2,
+                            margin: 20,
+                            marginTop: Dimensions.get('window').height/4 - 10,
+                            backgroundColor: '#232323',
+                            borderRadius: 20,
+                            padding: 35,
+                            width: 335,
+                            height: 420,
+                            alignSelf: 'center',
+                            shadowColor: '#000',
+                            shadowOffset: {
+                            width: 0,
+                            height: 2,
+                            },
+                            shadowOpacity: 0.75,
+                            shadowRadius: 3.84,
+                            elevation: 5,
+                        }}
+                        >   
+                        <Text
+                            style = {{
+                                textAlign: 'center',
+                                fontFamily: 'poppinsBold',
+                                fontSize: 24,
+                                color: 'white',
+                                marginBottom: 20
+                            }}
+                        >Hurray!</Text>
+                        <Image 
+
+                            source = {require("../images/party.png")}
+                            style = {{
+                                width: 228, 
+                                height: 160,
+                                // borderColor: 'white',
+                                // borderWidth: 2,
+                                alignSelf: 'center'
+                            }}
+                        />
+                        <Text
+                            style = {{
+                            textAlign: 'center',
+                            fontFamily: 'poppinsBold',
+                            fontSize: 15,
+                            color: 'white',
+                            marginTop: 20
+                        }}
+                        >Conratulations! You just earned</Text>
+                        <Text
+                            style = {{
+                            textAlign: 'center',
+                            fontFamily: 'poppinsBold',
+                            fontSize: 15,
+                            color: '#67F2F6',
+                            marginTop: 10
+                        }}
+                        >50 Bloombrain credits !</Text>
+                        <Text
+                            style = {{
+                            textAlign: 'center',
+                            fontFamily: 'poppinsBold',
+                            fontSize: 15,
+                            color: '#585858',
+                            marginTop: 30
+                        }}
+                        >Current Balance: 680BB</Text>
+                    </View>
+                    </TouchableWithoutFeedback>
+                    </View>
+                    </TouchableOpacity>
+                </Modal> */}
+
                 <Modal
                     
                     visible = {this.state.showModal}
                     animationType = "fade"
                     transparent = {true}
+                    
                     // backgroundColor = '#000'
                     // backdropOpacity= {1}
                     // backdropColor={'green'}
-                >
-                    <TouchableOpacity onPress = {() => this.setState({showModal: false})}>
-                        <SafeAreaView>
-                        <Image 
-                        style = {{
-                            width: 20,
-                            height: 20,
-                            marginTop: 30,
-                            marginLeft: 20
-                        }}
-                        source = {require("../images/cross.png")}/>
-                        </SafeAreaView>
-                    </TouchableOpacity>
+                >   
+                <TouchableOpacity 
+                    style = {{
+                        height: '100%'
+                    }}
+                    onPress={() => {
+                    this.setState({showModal: !this.state.showModal})
+                }}>
+                <View>
+                <TouchableWithoutFeedback onPress={() => { }}>
                     <View
                     style = {{
                         // flex: 1,
-
+                        // borderColor: 'white',
+                        // borderWidth: 2,
                         margin: 20,
-                        marginTop: Dimensions.get('window').height/7,
+                        marginTop: Dimensions.get('window').height/4 - 10,
                         backgroundColor: '#232323',
                         borderRadius: 20,
                         padding: 35,
@@ -299,7 +389,7 @@ class Hompage extends Component {
                         shadowRadius: 3.84,
                         elevation: 5,
                     }}
-                    >
+                    >   
                         <Text 
                             style = {{
                                 fontFamily: 'poppinsBold',
@@ -350,7 +440,7 @@ class Hompage extends Component {
                                 onPress = { () => {
                                     this.setState({
                                         showModal: false
-                                    })
+                                })
                                     
                                     Actions.BottomNavigator();
                                 }}
@@ -588,8 +678,12 @@ class Hompage extends Component {
                                     </Text>
                                 </LinearGradient>
                             </View> */}
-                    </View>
-                </Modal>
+                        </View>
+                        </TouchableWithoutFeedback>
+                        </View>
+                        </TouchableOpacity>
+                    </Modal>
+                
                 
                 <View style = {{
                     // flex: 1,
@@ -663,14 +757,24 @@ class Hompage extends Component {
                     }}
                     source = {require("../images/wifi.png")} 
                 />
-                <Text
+                {/* <TouchableOpacity 
                     style = {{
-                        marginLeft: 8,
-                        fontFamily: 'poppinsMedium',
-                        fontSize: 16,
-                        color: 'white'
+                        boderWidth: 2,
+                        borderColor: 'white'
                     }}
-                >Your Class is Live Now!</Text>
+                    onPress = {() => {
+                        this.setState({showModalCong: true})
+                        console.log(this.state.showModalCong);
+                    }}> */}
+                    <Text
+                        style = {{
+                            marginLeft: 8,
+                            fontFamily: 'poppinsMedium',
+                            fontSize: 16,
+                            color: 'white'
+                        }}
+                    >Your Class is Live Now!</Text>
+                {/* </TouchableOpacity> */}
                 <View
                     style = {{
                         flex: 1,

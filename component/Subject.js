@@ -15,14 +15,13 @@ export default class Subject extends Component {
     state = {
         numbers: [
             {
-              label: '1',
+              label: 'Algebra',
               value: 1,
-              color: 'orange',
             },
             {
-              label: '2',
+              label: 'Fractions',
               value: 2,
-              color: 'green',
+
             },
           ],
             itemDetails: [
@@ -81,8 +80,8 @@ export default class Subject extends Component {
             <SafeAreaView
                 // forceInset={{ bottom: 'never' }}
                 style = {{
-                    height: '96.2%',
-                    // paddingBottom: 50,
+                    height: '100%',
+                    
                     // flex: 1,
                     // flexDirection: 'column',
                     backgroundColor: 'black',
@@ -91,7 +90,7 @@ export default class Subject extends Component {
             >
                 <ScrollView
                     style = {{
-
+                        marginBottom: 70
                     }}
                 >
                     
@@ -409,7 +408,7 @@ export default class Subject extends Component {
                                                     marginTop: 15,
                                                     // marginBottom: 5,
                                                     // marginLeft: 4,
-                                                    marginRight: 4,
+                                                    marginRight: 10,
 
                                                     justifyContent: 'center'
                                                 }}

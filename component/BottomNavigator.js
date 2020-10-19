@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View, Image, TouchableOpacity, Alert, Dimensions} from 'react-native';
+import { View, Image, TouchableOpacity, Alert, Dimensions, Text} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import Video from './Video';
 import Live from './Live';
@@ -42,15 +42,25 @@ const BottomNavigator = () => {
                 width: '100%',
                 height: 70,
                 flexDirection: 'row',
-                justifyContent: 'space-around',
+                justifyContent: 'center',
                 paddingVertical: 10,
                 paddingHorizontal: 25
 
 
             }}>
+                <View style = {{
+
+                    flexDirection: 'row',
+                    maxWidth: 375,
+                    width: '100%',
+                    // borderColor: 'white',
+                    // borderWidth: 2,
+                    justifyContent: 'space-around',
+                    // alignSelf: 'center'
+                }}>
 
                 <View style={{
-                    flexDirection: 'row', 
+                    flexDirection: 'column', 
                     alignItems: 'center',
                     // position: 'absolute',
 
@@ -77,13 +87,11 @@ const BottomNavigator = () => {
                                 tintColor: text.dashboardText? "#32C6F3" : "#585858",    
                             }}
                             source={require('../images/dashboard.png')}
-                            onPress={()=>{Alert.alert("")}}
                         >
 
                         </Image>
-
+                        
                     </TouchableOpacity>
-                    
                 </View>
                 
                 <View style={{
@@ -91,6 +99,7 @@ const BottomNavigator = () => {
                     alignItems: 'center',
                     // position: 'absolute
                     // left: margin.marginV,
+                    flexDirection: 'row',
                     height: 30,
                     width: 20
                 }}>
@@ -110,13 +119,12 @@ const BottomNavigator = () => {
                                 // marginHorizontal: 3, 
                                 width: 25, 
                                 height: 25,
-                                tintColor: text.videoText ? "#32C6F3" : "#585858", }}
+                                tintColor: text.videoText ? "#32C6F3" : "#585858"
+                            }}
                             source={require('../images/videos.png')}
-                            onPress={() => { Alert.alert("click") }}
                         />
                     
                     </TouchableOpacity>
-                    
                 </View>
 
                     <View style={{
@@ -200,7 +208,7 @@ const BottomNavigator = () => {
                     
                         </TouchableOpacity>
                     </View>
-
+                </View>
                 {/* </View> */}
             </View>
         </View>
