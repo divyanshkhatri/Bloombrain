@@ -4,7 +4,6 @@ import RNPickerSelect, { defaultStyles } from 'react-native-picker-select';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FlatList, ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import {Actions} from 'react-native-router-flux';
-import BottomNavBar from './BottomNavigator';
 
 export default class Subject extends Component {
 
@@ -164,7 +163,7 @@ export default class Subject extends Component {
                         placeholder: {
                             padding: 15,
                             fontSize: 14,
-                            fontFamily: 'poppinsSemiBold',
+                            fontFamily: 'poppinsBold',
                             color: 'white'
                         },
 

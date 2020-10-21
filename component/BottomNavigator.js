@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View, Image, TouchableOpacity, Alert, Dimensions, Text} from 'react-native';
+import { View, Image, TouchableOpacity, Alert, Dimensions, Text, AsyncStorage } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import Video from './Video';
 import Live from './Live';
@@ -14,6 +14,7 @@ const BottomNavigator = () => {
         liveText: false,
         testText: false
     });
+
 
     return (
         <View style={{

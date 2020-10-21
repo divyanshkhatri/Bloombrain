@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Image, Dimensions, SafeAreaView, FlatList, TouchableOpacity, Modal, TouchableWithoutFeedback} from 'react-native';
+import {View, Text, Image, Dimensions, SafeAreaView, FlatList, TouchableOpacity, Modal, TouchableWithoutFeedback, AsyncStorage} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import { LinearGradient } from 'expo-linear-gradient';
 import {Actions} from 'react-native-router-flux';
@@ -440,8 +440,8 @@ class Hompage extends Component {
                                 onPress = { () => {
                                     this.setState({
                                         showModal: false
-                                })
-                                    
+                                    })
+                                    AsyncStorage.setItem('subject', 'Mathematics');
                                     Actions.BottomNavigator();
                                 }}
                             >

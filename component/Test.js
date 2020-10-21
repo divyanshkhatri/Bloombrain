@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {View, Text, SafeAreaView} from 'react-native';
-import BottomNavBar from './BottomNavigator';
 
 class Test extends Component {
 
