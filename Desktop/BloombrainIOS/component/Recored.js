@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {View, Text, ScrollView, Dimensions, TouchableOpacity, FlatList, Image, ImageBackground} from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import Modal from 'react-native-modal';
-import DateTimePicker from '@react-native-community/datetimepicker';
 
 class Recorded extends Component {
 

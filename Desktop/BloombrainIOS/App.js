@@ -39,7 +39,7 @@ export default function App() {
         <Scene key = "root">
           <Scene type = "reset" key = "Landing" component = {Landing} title = "Landing" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} initial/>
           <Scene type = "reset" key = "Signin" component = {Signin} title = "Signin" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
-          <Scene type = "reset" type = "reset" key = "Payment" component = {Payment} title = "Payment" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
+          <Scene type = "reset" key = "Payment" component = {Payment} title = "Payment" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
           <Scene type = "reset" key = "Checkout" component = {Checkout} title = "Checkout" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
           <Scene type = "reset" key = "PaymentComplete" component = {PaymentComplete} title = "PaymentComplete" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />
           <Scene type = "reset" key = "PaymentInComplete" component = {PaymentInComplete} title = "PaymentInComplet" hideNavBar duration = {0} swipeEnabled={false} animationEnabled={false} panHandlers={null} />

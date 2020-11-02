@@ -44,6 +44,9 @@
     "detach": {
       "iosExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/ios-v2.14.6-sdk36.0.0-8ea388d1-463b-4e91-bbf7-2d95d0174c96.tar.gz"
     },
-    "scheme": "exp3cd9787e43d843c59899eaf708400ec0"
-  }
+    "scheme": "exp3cd9787e43d843c59899eaf708400ec0",
+    "entryPoint": "node_modules/expo/AppEntry.js"
+  },
+  "displayName": "bloombrain",
+  "name": "Bloombrain"
 }
